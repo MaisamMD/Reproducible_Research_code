@@ -1,0 +1,60 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import linregress
+
+def generate_linear_data(slope, intercept, num_points, noise_std):
+    """
+    Generate random linear data with optional noise.
+    
+    Args:
+        slope (float): The slope of the linear relationship.
+        intercept (float): The y-intercept of the linear relationship.
+        num_points (int): Number of data points to generate.
+        noise_std (float): Standard deviation of the noise to add.
+    
+    Returns:
+        tuple: Two numpy arrays (x, y) representing the data points.
+    """
+    x = np.linspace(0, 10, num_points)
+    noise = np.random.normal(0, noise_std, size=num_points)
+    y = slope * x + intercept + noise
+    return x, y
+
+def fit_and_plot_linear_data(x, y):
+    """
+    Fit a straight line to the data and plot the results.
+    
+    Args:
+        x (array-like): The independent variable.
+        y (array-like): The dependent variable.
+    """
+    # Perform linear regression
+    slope, intercept, r_value, p_value, std_err = linregress(x, y)
+    
+    # Generate fitted line
+    y_fit = slope * x + intercept
+    
+    # Plot the data and the fitted line
+    plt.figure(figsize=(8, 6))
+    plt.scatter(x, y, color="blue", label="Data points", alpha=0.7)
+    plt.plot(x, y_fit, color="red", label=f"Fit: y = {slope:.2f}x + {intercept:.2f}")
+    
+    # Add labels, legend, and title
+    plt.xlabel("X")
+    plt.ylabel("Y")
+    plt.title("Scatter Plot with Linear Fit")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+if __name__ == "__main__":
+    # Generate synthetic data
+    slope = 2.0
+    intercept = 1.0
+    num_points = 50
+    noise_std = 2.0
+    
+    x_data, y_data = generate_linear_data(slope, intercept, num_points, noise_std)
+    
+    # Fit and plot the data
+    fit_and_plot_linear_data(x_data, y_data)

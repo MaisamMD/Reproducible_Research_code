@@ -1,6 +1,7 @@
 # Reproducible Research code and software
 In this repo the materials, code block, examples, and workflows for the workshop are shared with the participants.
 The outline of the workshop is as follow:
+
 - Introduction to Reproducible Research
 - Coding Best Practices
 - Code Documentation
